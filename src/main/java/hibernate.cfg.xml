@@ -1,10 +1,10 @@
-<!DOCTYPE hibernate-configuration PUBLIC 
+ <!DOCTYPE hibernate-configuration PUBLIC 
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 	
 	<hibernate-configuration>
 		<session-factory>
-			<property name="dilect">
+		<!--  <property name="dilect">
 			org.hibernate.dialect.MySQLDialect
 			</property>
 			<property name="connection.driver_class">
@@ -18,7 +18,7 @@
 			<property name="show_sql">true</property>
 			<property name="connection.pool_size">1</property>
 			<property name="hbm2ddl.auto">update</property>
-			<mapping resource="com/springrecipes/database/beans/Course.hbn.xml"/>  
-	<!-- 		<mapping class="com.springrecipes.database.beans.Course"/>  -->
+			<mapping resource="com/springrecipes/database/beans/Course.hbn.xml"/>  -->
+  	<mapping class="com.springrecipes.database.beans.Course"/> 
 		</session-factory>
-	</hibernate-configuration>
+	</hibernate-configuration>  

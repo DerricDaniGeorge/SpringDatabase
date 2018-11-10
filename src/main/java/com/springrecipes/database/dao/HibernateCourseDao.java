@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.Transaction;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.springrecipes.database.beans.Course;
 public class HibernateCourseDao implements CourseDao{
 	private SessionFactory sessionFactory;
@@ -14,8 +14,10 @@ public class HibernateCourseDao implements CourseDao{
 	public HibernateCourseDao(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}
+	@Transactional
 	public void store(Course course) {
-		Session session=sessionFactory.openSession();
+		sessionFactory.getCurrentSession().saveOrUpdate(course);
+	/*	Session session=sessionFactory.openSession();
 		Transaction tx=session.getTransaction();
 		try {
 			tx.begin();
@@ -27,10 +29,13 @@ public class HibernateCourseDao implements CourseDao{
 		}finally {
 			session.close();
 			//sessionFactory.close();
-		}
+		}  */
 	}
+	@Transactional
 	public void delete(Long courseId) {
-		Session session=sessionFactory.openSession();
+		Course course=(Course)sessionFactory.getCurrentSession().get(Course.class, courseId);
+		sessionFactory.getCurrentSession().delete(course);
+	/*	Session session=sessionFactory.openSession();
 		Transaction tx=session.getTransaction();
 		try {
 			tx.begin();
@@ -43,25 +48,30 @@ public class HibernateCourseDao implements CourseDao{
 		}finally {
 			session.close();
 			//sessionFactory.close();
-		}
+		}  */
 	}
+	@Transactional(readOnly=true)
 	public Course findById(Long courseId) {
-		Session session=sessionFactory.openSession();
+		return sessionFactory.getCurrentSession().get(Course.class, courseId);
+	/*	Session session=sessionFactory.openSession();
 		try {
 			return (Course)session.get(Course.class, courseId);
 		}finally {
 			session.close();
 			//sessionFactory.close();
-		}
+		}  */
 	}
+	@Transactional(readOnly=true)
 	public List<Course> findAll(){
-		Session session=sessionFactory.openSession();
+		Query<Course> query=sessionFactory.getCurrentSession().createQuery("from Course");
+		return query.list();
+	/*	Session session=sessionFactory.openSession();
 		try {
 			Query<Course> query=session.createQuery("from Course");
 			return query.list();
 		}finally {
 			session.close();
 			//sessionFactory.close();
-		}
+		}  */
 	}
 }

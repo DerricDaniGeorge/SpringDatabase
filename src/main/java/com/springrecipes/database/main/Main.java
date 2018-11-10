@@ -26,13 +26,13 @@ public class Main {
 		Vehicle v3=new Vehicle("RMX0004","White",4,4);
 	//	vehicleDao.insertBatch(Arrays.asList(v2,v3));  */
 		
-		CourseDao courseDao=context.getBean(CourseDao.class);
+		CourseDao courseDao=context.getBean("HibernateCourseDao",CourseDao.class);
 		Course course=new Course();
 		course.setTitle("Hibernate ORM");
 		course.setBeginDate(new GregorianCalendar(2018,8,1).getTime());
 		course.setEndDate(new GregorianCalendar(2018,9,1).getTime());
 		course.setFee(1000);
-		courseDao.store(course);
+	//	courseDao.store(course);
 		
 		//CourseDao courseDao1=new HibernateCourseDao();
 		List<Course> courses=courseDao.findAll();

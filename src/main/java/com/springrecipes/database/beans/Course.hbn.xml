@@ -1,4 +1,4 @@
-<!DOCTYPE hibernate-mapping
+<!--  <!DOCTYPE hibernate-mapping
 	PUBLIC "-//Hiberanate/Hibernate Mapping DTD 3.0//EN"
 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 	
@@ -14,4 +14,4 @@
 		<property name="endDate" type="date" column="END_DATE"/>
 		<property name="fee" type="int" column="FEE"/>
 		</class>
-	</hibernate-mapping>   
+	</hibernate-mapping>  -->
